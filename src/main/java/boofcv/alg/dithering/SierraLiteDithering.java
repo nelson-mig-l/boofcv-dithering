@@ -3,7 +3,7 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS32;
 import boofcv.struct.image.GrayU8;
 
-public class SierraLiteDithering extends TableDithering {
+public class SierraLiteDithering extends ErrorDiffusionDithering {
 
     /**
      *             X   2
@@ -11,7 +11,7 @@ public class SierraLiteDithering extends TableDithering {
      *           (1/4)
      */
     public SierraLiteDithering() {
-        super(new DitheringTable(3, 2));
+        super(new ErrorDiffusionTable(3, 2));
         table.setValue(1, 0, 2);
         table.setValue(-1, 1, 1);
         table.setValue(0, 1, 1);

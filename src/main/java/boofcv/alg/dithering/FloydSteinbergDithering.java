@@ -3,10 +3,10 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS32;
 import boofcv.struct.image.GrayU8;
 
-public class FloydSteinbergDithering extends TableDithering {
+public class FloydSteinbergDithering extends ErrorDiffusionDithering {
 
     public FloydSteinbergDithering() {
-        super(new DitheringTable(3, 2));
+        super(new ErrorDiffusionTable(3, 2));
         table.setValue(1, 0, 7);
         table.setValue(-1, 1, 3);
         table.setValue(0, 1, 5);

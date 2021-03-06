@@ -2,26 +2,19 @@ package boofcv.alg.dithering;
 
 import boofcv.struct.image.GrayU8;
 
-public class NoDithering implements Dithering {
+import java.util.Random;
 
-    private static final int DEFAULT_THRESHOLD_VALUE = 127;
+public class RandomDithering implements Dithering {
 
-    private final int thresholdValue;
-
-    public NoDithering() {
-        this(DEFAULT_THRESHOLD_VALUE);
-    }
-
-    public NoDithering(int thresholdValue) {
-        this.thresholdValue = thresholdValue;
-    }
+    private final Random random = new Random();
 
     @Override
     public GrayU8 apply(GrayU8 input) {
         GrayU8 output = input.createSameShape();
         for (int y = 0; y < input.height; y++) {
             for (int x = 0; x < input.width; x++) {
-                final int source = input.get(x, y);
+                int thresholdValue = random.nextInt(255);
+                int source = input.get(x, y);
                 if (source > thresholdValue) {
                     output.set(x, y, 255);
                 } else {

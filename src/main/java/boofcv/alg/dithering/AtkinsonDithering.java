@@ -3,7 +3,7 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS32;
 import boofcv.struct.image.GrayU8;
 
-public class AtkinsonDithering extends TableDithering {
+public class AtkinsonDithering extends ErrorDiffusionDithering {
 
     /**
      *         X   1   1
@@ -13,7 +13,7 @@ public class AtkinsonDithering extends TableDithering {
      *       (1/8)
      */
     public AtkinsonDithering() {
-        super(new DitheringTable(4, 3, 1, 0));
+        super(new ErrorDiffusionTable(4, 3, 1, 0));
         table.setValue(1, 0, 1);
         table.setValue(2, 0, 1);
         table.setValue(-1, 1, 1);

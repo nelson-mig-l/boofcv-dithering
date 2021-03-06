@@ -21,7 +21,7 @@ public class App {
         ConvertBufferedImage.convertFromSingle(image, input, GrayU8.class);
         UtilImageIO.saveImage(input, output("bw-ref"));
 
-        apply(input, new NoDithering(), "no");
+        apply(input, new FixedThreshold(), "no");
         apply(input, new SimpleDithering(), "simple");
         apply(input, new FloydSteinbergDithering(), "floyd-steinberg");
         apply(input, new JarvisJudiceAndNinkeDithering(), "jarvis-judice-and-ninke");
@@ -32,6 +32,7 @@ public class App {
         apply(input, new TwoRowSierraDithering(), "two-row-sierra");
         apply(input, new SierraLiteDithering(), "sierra-lite");
         apply(input, new SimpleSerpentineDithering(), "simple-serpentine");
+        apply(input, new RandomDithering(), "random");
     }
 
     private static void apply(final GrayU8 input, final Dithering dithering, final String name) {

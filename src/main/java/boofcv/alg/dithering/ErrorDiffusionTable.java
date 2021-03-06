@@ -1,16 +1,16 @@
 package boofcv.alg.dithering;
 
-public class DitheringTable {
+public class ErrorDiffusionTable {
 
     private final double[][] table;
     private final int offsetX;
     private final int offsetY;
 
-    public DitheringTable(int width, int height) {
+    public ErrorDiffusionTable(int width, int height) {
         this(width, height, width / 2, 0);
     }
 
-    public DitheringTable(int width, int height, int offsetX, int offsetY) {
+    public ErrorDiffusionTable(int width, int height, int offsetX, int offsetY) {
         this.table = new double[width][height];
         this.offsetX = offsetX;
         this.offsetY = offsetY;

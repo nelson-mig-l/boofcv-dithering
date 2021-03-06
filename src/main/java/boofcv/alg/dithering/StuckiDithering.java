@@ -3,7 +3,7 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS32;
 import boofcv.struct.image.GrayU8;
 
-public class StuckiDithering extends TableDithering {
+public class StuckiDithering extends ErrorDiffusionDithering {
 
     /**
      *              X   8   4
@@ -11,7 +11,7 @@ public class StuckiDithering extends TableDithering {
      *      1   2   4   2   1
      */
     public StuckiDithering() {
-        super(new DitheringTable(5, 3));
+        super(new ErrorDiffusionTable(5, 3));
         table.setValue(1, 0, 8);
         table.setValue(2, 0, 4);
 

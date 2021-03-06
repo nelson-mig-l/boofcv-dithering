@@ -3,11 +3,11 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS32;
 import boofcv.struct.image.GrayU8;
 
-public abstract class TableDithering implements Dithering {
+public abstract class ErrorDiffusionDithering implements Dithering {
 
-    protected final DitheringTable table;
+    protected final ErrorDiffusionTable table;
 
-    protected TableDithering(DitheringTable table) {
+    protected ErrorDiffusionDithering(ErrorDiffusionTable table) {
         this.table = table;
     }
 
