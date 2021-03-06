@@ -1,0 +1,2 @@
+# boofcv-dithering
+
