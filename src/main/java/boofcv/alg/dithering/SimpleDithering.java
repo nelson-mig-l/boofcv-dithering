@@ -2,7 +2,7 @@ package boofcv.alg.dithering;
 
 import boofcv.struct.image.GrayU8;
 
-public class SimpleDithering implements Dithering {
+public class SimpleDithering implements OldDithering {
 
     @Override
     public GrayU8 apply(GrayU8 input) {

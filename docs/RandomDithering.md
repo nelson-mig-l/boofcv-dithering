@@ -43,3 +43,6 @@ any mezzotinting artisan who might read this!) the pattern created is not
 very regular or periodic at all, but the absence of low frequency noise
 leads to a very attractive image without much graininess.  A similar process
 is still in use today, in the form of modern gravure printing.
+
+![original](bw-ref.bmp)
+![processed](random.bmp)
