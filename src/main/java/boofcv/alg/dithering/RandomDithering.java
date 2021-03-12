@@ -1,7 +1,5 @@
 package boofcv.alg.dithering;
 
-import boofcv.struct.image.GrayI;
-
 import java.util.Random;
 
 public class RandomDithering extends AbstractDithering {

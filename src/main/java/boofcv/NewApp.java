@@ -17,13 +17,13 @@ public class NewApp {
         ConvertBufferedImage.convertFromSingle(image, input, GrayU8.class);
         UtilImageIO.saveImage(input, output("bw-ref"));
 
-        //apply(input, new FixedThreshold(), "no");
-        //apply(input, new RandomDithering(), "random");
-        //apply(input, new FloydSteinbergDithering(), "floyd-steinberg");
-        //apply(input, new SimpleDithering(), "simple");
-        //apply(input, new StuckiDithering(), "stucki");
-        //apply(input, new AtkinsonDithering(), "atkinson");
-        //apply(input, new BurkesDithering(), "burkes");
+        apply(input, new FixedThreshold(), "no");
+        apply(input, new RandomDithering(), "random");
+        apply(input, new FloydSteinbergDithering(), "floyd-steinberg");
+        apply(input, new SimpleDithering(), "simple");
+        apply(input, new StuckiDithering(), "stucki");
+        apply(input, new AtkinsonDithering(), "atkinson");
+        apply(input, new BurkesDithering(), "burkes");
         apply(input, new SierraDithering(), "sierra");
         apply(input, new TwoRowSierraDithering(), "two-row-sierra");
         apply(input, new SierraLiteDithering(), "sierra-lite");
@@ -36,6 +36,7 @@ public class NewApp {
     }
 
     private static String output(final String name) {
-        return EXAMPLE.replace("lena", name + "_new");
+        return EXAMPLE.replace("lena", name);
     }
+
 }

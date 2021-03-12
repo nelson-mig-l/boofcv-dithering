@@ -2,7 +2,6 @@ package boofcv.alg.dithering;
 
 public class BurkesDithering extends AbstractErrorDithering {
 
-
     /**
      *              X   8   4
      *      2   4   8   4   2
@@ -21,17 +20,4 @@ public class BurkesDithering extends AbstractErrorDithering {
         table.normalize();
     }
 
-    @Override
-    protected void doPixel(int x, int y) {
-        int err;
-        int source = input.get(x, y) + error.get(x, y);
-        if (source >= 127) {
-            err = source - 255;
-            output.set(x, y, 255);
-        } else {
-            err = source;
-            output.set(x, y, 0);
-        }
-        propagateError(x, y, err);
-    }
 }

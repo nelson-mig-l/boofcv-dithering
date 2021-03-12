@@ -17,6 +17,20 @@ public abstract class AbstractErrorDithering extends AbstractDithering {
         return super.apply(input);
     }
 
+    @Override
+    protected void doPixel(int x, int y) {
+        int err;
+        int source = input.get(x, y) + error.get(x, y);
+        if (source >= 127) {
+            err = source - 255;
+            output.set(x, y, 255);
+        } else {
+            err = source;
+            output.set(x, y, 0);
+        }
+        propagateError(x, y, err);
+    }
+
     protected void propagateError(int x, int y, int err) {
         if (err != 0) {
             for (int i = table.minX(); i <= table.maxX(); i++) {

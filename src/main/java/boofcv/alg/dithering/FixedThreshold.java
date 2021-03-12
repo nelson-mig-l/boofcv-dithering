@@ -1,8 +1,5 @@
 package boofcv.alg.dithering;
 
-import boofcv.struct.image.GrayI;
-import boofcv.struct.image.GrayU8;
-
 /**
  * Not really dithering.
  */
