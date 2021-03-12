@@ -1,27 +1,21 @@
 package boofcv.alg.dithering;
 
-import boofcv.struct.image.GrayU8;
+public class SimpleDithering extends AbstractDithering {
 
-public class SimpleDithering implements OldDithering {
+    private int error = 0;
+    private int lastY = 0;
 
     @Override
-    public GrayU8 apply(GrayU8 input) {
-        GrayU8 output = input.createSameShape();
-        for (int y = 0; y < input.height; y++) {
-            int error = 0;
-            for (int x = 0; x < input.width; x++) {
-                final int source = input.get(x, y) + error;
-                int blackError = source;
-                int whiteError = blackError - 255;
-                if (Math.abs(whiteError) < Math.abs(blackError)) {
-                    error = whiteError;
-                    output.set(x, y, 255);
-                } else {
-                    error = blackError;
-                    output.set(x, y, 0);
-                }
-            }
+    public void doPixel(int x, int y) {
+        if (lastY != y) {lastY = y; error = 0;} // little dirty hack
+        int blackError = input.get(x, y) + error;
+        int whiteError = blackError - 255;
+        if (Math.abs(whiteError) > Math.abs(blackError)) {
+            error = blackError;
+            output.set(x, y, 0);
+        } else {
+            error = whiteError;
+            output.set(x, y, 255);
         }
-        return output;
     }
 }

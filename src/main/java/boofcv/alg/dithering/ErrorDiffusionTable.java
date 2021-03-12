@@ -45,4 +45,20 @@ class ErrorDiffusionTable {
         return table[x + offsetX][y + offsetY];
     }
 
+    int minX() {
+        return -offsetX;
+    }
+
+    int maxX() {
+        return table.length - offsetX - 1;
+    }
+
+    int minY() {
+        return 0;
+    }
+
+    int maxY() {
+        return table[0].length-1;
+    }
+
 }

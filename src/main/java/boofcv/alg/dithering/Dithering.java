@@ -1,9 +1,9 @@
 package boofcv.alg.dithering;
 
-import boofcv.struct.image.GrayI;
+import boofcv.struct.image.GrayU8;
 
-public interface Dithering<T extends GrayI> {
+public interface Dithering {
 
-    void doPixel(int x, int y, T input, T output);
+    GrayU8 apply(GrayU8 input);
 
 }

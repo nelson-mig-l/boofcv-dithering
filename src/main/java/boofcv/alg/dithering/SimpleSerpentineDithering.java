@@ -2,9 +2,8 @@ package boofcv.alg.dithering;
 
 import boofcv.struct.image.GrayU8;
 
-public class SimpleSerpentineDithering implements OldDithering {
+public class SimpleSerpentineDithering extends AbstractDithering {
 
-    @Override
     public GrayU8 apply(GrayU8 input) {
         GrayU8 output = input.createSameShape();
         for (int y = 0; y < input.height; y++) {
@@ -38,5 +37,10 @@ public class SimpleSerpentineDithering implements OldDithering {
             }
         }
         return output;
+    }
+
+    @Override
+    protected void doPixel(int x, int y) {
+        throw new RuntimeException("Work in progress");
     }
 }
