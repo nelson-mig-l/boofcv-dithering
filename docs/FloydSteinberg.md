@@ -28,3 +28,11 @@ checkerboard pattern in areas with intensity of 1/2 (or 128, in our sample
 image).  It is also fairly easy to execute in programming code, since the
 division by 16 is accomplished by simple, fast bit-shifting instructions
 (this is the case whenever the divisor is a power of 2).
+
+![original](bw-ref.bmp)
+![processed](floyd-steinberg-ref.bmp)
+
+[4]  Floyd, R.W. and L. Steinberg, "An Adaptive Algorithm for Spatial Gray
+     Scale."  SID 1975, International Symposium Digest of Technical Papers,
+     vol 1975m, pp. 36-37.
+     Short article in which Floyd and Steinberg introduce their filter.

@@ -21,3 +21,7 @@ thresholding, giving way to two separate areas (one white, one black) and a
 distinct, visible boundary between them.  The situation where a transition
 from one intensity or shade to another is very conspicuous is known as
 contouring.
+
+![original](bw-ref.bmp)
+![processed](no.bmp)
+
