@@ -1,19 +1,16 @@
 package boofcv.alg.dithering;
 
-/**
- * Not really dithering.
- */
-public class FixedThreshold extends AbstractDithering {
+public class AverageDithering extends AbstractDithering {
 
     private static final int DEFAULT_THRESHOLD_VALUE = 127;
 
     private final int thresholdValue;
 
-    public FixedThreshold() {
+    public AverageDithering() {
         this(DEFAULT_THRESHOLD_VALUE);
     }
 
-    public FixedThreshold(int thresholdValue) {
+    public AverageDithering(int thresholdValue) {
         this.thresholdValue = thresholdValue;
     }
 

@@ -17,17 +17,25 @@ public class NewApp {
         ConvertBufferedImage.convertFromSingle(image, input, GrayU8.class);
         UtilImageIO.saveImage(input, output("bw-ref"));
 
-        apply(input, new FixedThreshold(), "no");
-        apply(input, new RandomDithering(), "random");
-        apply(input, new FloydSteinbergDithering(), "floyd-steinberg");
-        apply(input, new SimpleDithering(), "simple");
-        apply(input, new StuckiDithering(), "stucki");
-        apply(input, new AtkinsonDithering(), "atkinson");
-        apply(input, new BurkesDithering(), "burkes");
-        apply(input, new SierraDithering(), "sierra");
-        apply(input, new TwoRowSierraDithering(), "two-row-sierra");
-        apply(input, new SierraLiteDithering(), "sierra-lite");
-        apply(input, new JarvisJudiceAndNinkeDithering(), "jarvis-judice-and-ninke");
+        final DitheringFactory dithering = new DitheringFactory();
+
+        apply(input, dithering.average(), "average");
+        apply(input, dithering.random(), "random");
+        apply(input, dithering.simple(), "simple");
+
+        apply(input, dithering.errorDiffusion().floydSteinberg(), "floyd-steinberg");
+        apply(input, dithering.errorDiffusion().stucki(), "stucki");
+        apply(input, dithering.errorDiffusion().atkinson(), "atkinson");
+        apply(input, dithering.errorDiffusion().burkes(), "burkes");
+        apply(input, dithering.errorDiffusion().sierra(), "sierra");
+        apply(input, dithering.errorDiffusion().twoRowSierra(), "two-row-sierra");
+        apply(input, dithering.errorDiffusion().sierraLite(), "sierra-lite");
+        apply(input, dithering.errorDiffusion().jarvisJudiceAndNinke(), "jarvis-judice-and-ninke");
+
+        apply(input, dithering.ordered().bayer2x2(), "ordered-2x2");
+        apply(input, dithering.ordered().bayer4x4(), "ordered-4x4");
+        apply(input, dithering.ordered().bayer8x8(), "ordered-8x8");
+
     }
 
     private static void apply(final GrayU8 input, final Dithering dithering, final String name) {

@@ -4,7 +4,15 @@ import java.util.Random;
 
 public class RandomDithering extends AbstractDithering {
 
-    private final Random random = new Random();
+    private final Random random;
+
+    public RandomDithering() {
+        random = new Random();
+    }
+
+    public RandomDithering(int seed) {
+        random = new Random(seed);
+    }
 
     @Override
     public void doPixel(int x, int y) {

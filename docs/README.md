@@ -1,9 +1,9 @@
 # Example
 
-## Threshold
+## Average
 
 ![original](bw-ref.bmp)
-![processed](no.bmp)
+![processed](average.bmp)
 
 ## Random
 
@@ -15,42 +15,47 @@
 ![original](bw-ref.bmp)
 ![processed](simple.bmp)
 
-## Floyd-Steinberg
+## Error Diffusion
+
+### Floyd-Steinberg
 
 ![original](bw-ref.bmp)
 ![processed](floyd-steinberg.bmp)
 
-## Jarvis, Judice, and Ninke Dithering
+### Jarvis, Judice, and Ninke Dithering
 
 ![original](bw-ref.bmp)
 ![processed](jarvis-judice-and-ninke.bmp)
 
-## Stucki Dithering
+### Stucki Dithering
 
 ![original](bw-ref.bmp)
 ![processed](stucki.bmp)
 
-## Atkinson Dithering
+### Atkinson Dithering
 
 ![original](bw-ref.bmp)
 ![processed](atkinson.bmp)
 
-## Burkes Dithering
+### Burkes Dithering
 
 ![original](bw-ref.bmp)
 ![processed](burkes.bmp)
 
-## Sierra Dithering
+### Sierra Dithering
 
 ![original](bw-ref.bmp)
 ![processed](sierra.bmp)
 
-## Two-Row Sierra
+### Two-Row Sierra
 
 ![original](bw-ref.bmp)
 ![processed](two-row-sierra.bmp)
 
-## Sierra Lite
+### Sierra Lite
 
 ![original](bw-ref.bmp)
 ![processed](sierra-lite.bmp)
+
+## Ordered
+

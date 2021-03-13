@@ -3,12 +3,13 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS8;
 import boofcv.struct.image.GrayU8;
 
-public abstract class AbstractErrorDithering extends AbstractDithering {
+public class ErrorDiffusionDithering extends AbstractDithering {
 
-    protected ErrorDiffusionTable table;
-    protected GrayS8 error;
+    private final ErrorDiffusionTable table;
 
-    protected AbstractErrorDithering(ErrorDiffusionTable table) {
+    private GrayS8 error;
+
+    public ErrorDiffusionDithering(ErrorDiffusionTable table) {
         this.table = table;
     }
 
