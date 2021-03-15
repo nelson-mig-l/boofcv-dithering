@@ -23,7 +23,7 @@ public class OrderedDitheringFactory {
         table.scale();
         return new OrderedDithering(table);
     }
-    
+
     public Dithering bayer8x8() {
         int[] data = {
              0, 32,  8, 40,  2, 34, 10, 42,
@@ -43,4 +43,5 @@ public class OrderedDitheringFactory {
     public Dithering custom(OrderedThresholdTable table) {
         return new OrderedDithering(table);
     }
+
 }

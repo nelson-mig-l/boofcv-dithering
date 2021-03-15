@@ -1,6 +1,8 @@
 package boofcv.alg.dithering;
 
-public class AverageDithering extends AbstractDithering {
+import boofcv.struct.image.GrayU8;
+
+public class AverageDithering implements Dithering {
 
     private static final int DEFAULT_THRESHOLD_VALUE = 127;
 
@@ -14,13 +16,23 @@ public class AverageDithering extends AbstractDithering {
         this.thresholdValue = thresholdValue;
     }
 
+
+    GrayU8 input;
+
     @Override
-    protected void doPixel(int x, int y) {
+    public void initialize(GrayU8 input) {
+        this.input = input;
+    }
+
+    @Override
+    public int doPixel(int x, int y) {
         final int source = input.get(x, y);
         if (source > thresholdValue) {
-            output.set(x, y, 255);
+            //output.set(x, y, 255);
+            return 255;
         } else {
-            output.set(x, y, 0);
+            //output.set(x, y, 0);
+            return 0;
         }
     }
 }

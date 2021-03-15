@@ -4,6 +4,8 @@ import boofcv.struct.image.GrayU8;
 
 public interface Dithering {
 
-    GrayU8 apply(GrayU8 input);
+    void initialize(GrayU8 input);
+
+    int doPixel(int x, int y);
 
 }

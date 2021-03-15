@@ -3,36 +3,40 @@ package boofcv.alg.dithering;
 import boofcv.struct.image.GrayS8;
 import boofcv.struct.image.GrayU8;
 
-public class ErrorDiffusionDithering extends AbstractDithering {
+public class ErrorDiffusionDithering implements Dithering {
 
     private final ErrorDiffusionTable table;
 
+    private GrayU8 input;
     private GrayS8 error;
 
     public ErrorDiffusionDithering(ErrorDiffusionTable table) {
         this.table = table;
     }
 
-    public GrayU8 apply(GrayU8 input) {
-        error = input.createSameShape(GrayS8.class);
-        return super.apply(input);
+    @Override
+    public void initialize(GrayU8 input) {
+        this.input = input;
+        this.error = input.createSameShape(GrayS8.class);
     }
 
     @Override
-    protected void doPixel(int x, int y) {
+    public int doPixel(int x, int y) {
         int err;
+        int value;
         int source = input.get(x, y) + error.get(x, y);
         if (source >= 127) {
             err = source - 255;
-            output.set(x, y, 255);
+            value = 255;
         } else {
             err = source;
-            output.set(x, y, 0);
+            value = 0;
         }
         propagateError(x, y, err);
+        return value;
     }
 
-    protected void propagateError(int x, int y, int err) {
+    private void propagateError(int x, int y, int err) {
         if (err != 0) {
             for (int i = table.minX(); i <= table.maxX(); i++) {
                 for (int j = table.minY(); j <= table.maxY(); j++) {
