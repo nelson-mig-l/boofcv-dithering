@@ -17,5 +17,9 @@ Wikipedia pages about [Dither](https://en.wikipedia.org/wiki/Dither) and
 Other sources include:
 * https://en.wikipedia.org/wiki/Error_diffusion
 * https://www.visgraf.impa.br/Courses/ip00/proj/Dithering1
+* https://arxiv.org/pdf/2008.05336.pdf
+* https://observablehq.com/@jobleonard/ordered-error-diffusion-dithering
+* https://bisqwit.iki.fi/story/howto/dither/jy/
+* https://www.programmersought.com/article/9915545798/
+* https://www.hindawi.com/journals/am/2016/4901609/
 * ...
-

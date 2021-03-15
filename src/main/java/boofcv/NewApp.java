@@ -36,7 +36,15 @@ public class NewApp {
         apply(input, dithering.ordered().bayer4x4(), "ordered-4x4");
         apply(input, dithering.ordered().bayer8x8(), "ordered-8x8");
 
+        final OrderedThresholdTable table = OrderedThresholdTableLoader.fromFile("docs/ordered-custom-one.txt");
+        apply(input, dithering.ordered().custom(table), "ordered-custom");
+
+        final ErrorDiffusionTable custom = ErrorDiffusionTableLoader.fromFile("docs/error-diffusion-custom-one.txt");
+        apply(input, dithering.errorDiffusion().custom(custom), "error-custom");
+
+        apply(input, dithering.smartRandom(), "smart-random");
     }
+
 
     private static void apply(final GrayU8 input, final Dithering dithering, final String name) {
         final GrayU8 output = dithering.apply(input);

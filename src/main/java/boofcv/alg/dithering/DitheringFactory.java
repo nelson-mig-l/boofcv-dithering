@@ -14,6 +14,10 @@ public class DitheringFactory {
         return new SimpleDithering();
     }
 
+    public Dithering smartRandom() {
+        return new SmartRandomDithering();
+    }
+
     public ErrorDiffusionDitheringFactory errorDiffusion() {
         return new ErrorDiffusionDitheringFactory();
     }

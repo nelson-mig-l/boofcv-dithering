@@ -111,4 +111,7 @@ public class ErrorDiffusionDitheringFactory {
         return new ErrorDiffusionDithering(table);
     }
 
+    public Dithering custom(ErrorDiffusionTable table) {
+        return new ErrorDiffusionDithering(table);
+    }
 }

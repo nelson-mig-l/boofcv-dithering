@@ -39,4 +39,8 @@ public class OrderedDitheringFactory {
         table.scale();
         return new OrderedDithering(table);
     }
+
+    public Dithering custom(OrderedThresholdTable table) {
+        return new OrderedDithering(table);
+    }
 }

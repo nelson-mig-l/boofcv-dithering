@@ -1,6 +1,6 @@
 package boofcv.alg.dithering;
 
-class ErrorDiffusionTable {
+public class ErrorDiffusionTable {
 
     private final double[][] table;
     private final int offsetX;
