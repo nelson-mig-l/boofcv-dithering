@@ -62,14 +62,24 @@
 ### Bayer 2x2
 
 ![original](bw-ref.bmp)
-![processed](ordered-2x2.bmp)
+![processed](bayer-2x2.bmp)
 
 ### Bayer 4x4
 
 ![original](bw-ref.bmp)
-![processed](ordered-4x4.bmp)
+![processed](bayer-4x4.bmp)
 
 ### Bayer 8x8
 
 ![original](bw-ref.bmp)
-![processed](ordered-8x8.bmp)
+![processed](bayer-8x8.bmp)
+
+### Cluster 4x4
+
+![original](bw-ref.bmp)
+![processed](cluster-4x4.bmp)
+
+### Cluster 8x8
+
+![original](bw-ref.bmp)
+![processed](cluster-8x8.bmp)

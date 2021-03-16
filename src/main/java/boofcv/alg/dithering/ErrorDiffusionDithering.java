@@ -22,18 +22,14 @@ public class ErrorDiffusionDithering implements Dithering {
 
     @Override
     public int doPixel(int x, int y) {
-        int err;
-        int value;
         int source = input.get(x, y) + error.get(x, y);
         if (source >= 127) {
-            err = source - 255;
-            value = 255;
+            propagateError(x, y, source - 255);
+            return 255;
         } else {
-            err = source;
-            value = 0;
+            propagateError(x, y, source);
+            return 0;
         }
-        propagateError(x, y, err);
-        return value;
     }
 
     private void propagateError(int x, int y, int err) {

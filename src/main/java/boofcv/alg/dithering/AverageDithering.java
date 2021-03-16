@@ -8,6 +8,8 @@ public class AverageDithering implements Dithering {
 
     private final int thresholdValue;
 
+    private GrayU8 input;
+
     public AverageDithering() {
         this(DEFAULT_THRESHOLD_VALUE);
     }
@@ -15,9 +17,6 @@ public class AverageDithering implements Dithering {
     public AverageDithering(int thresholdValue) {
         this.thresholdValue = thresholdValue;
     }
-
-
-    GrayU8 input;
 
     @Override
     public void initialize(GrayU8 input) {
@@ -28,10 +27,8 @@ public class AverageDithering implements Dithering {
     public int doPixel(int x, int y) {
         final int source = input.get(x, y);
         if (source > thresholdValue) {
-            //output.set(x, y, 255);
             return 255;
         } else {
-            //output.set(x, y, 0);
             return 0;
         }
     }

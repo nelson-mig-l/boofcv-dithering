@@ -5,6 +5,17 @@
 
 [List of implemented algorithms](docs/README.md)
 
+## Usage
+
+Example usage
+```java
+GrayU8 input = ...
+Dithering dithering = new DitheringFactory().errorDiffusion().floydSteinberg();
+DitheringOperation operation = new DitheringOperation(dithering);
+GrayU8 output = operation.apply(input);
+```
+Currently `DitheringOperation` only supports `GrayU8` and `Planar<GrayU8>`.
+
 ## Sources
 
 Heavily based on 
@@ -22,4 +33,6 @@ Other sources include:
 * https://bisqwit.iki.fi/story/howto/dither/jy/
 * https://www.programmersought.com/article/9915545798/
 * https://www.hindawi.com/journals/am/2016/4901609/
+* https://github.com/hbldh/hitherdither
+
 * ...
