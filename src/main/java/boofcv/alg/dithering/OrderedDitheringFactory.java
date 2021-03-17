@@ -2,6 +2,42 @@ package boofcv.alg.dithering;
 
 public class OrderedDitheringFactory {
 
+    public int[][] bayer(int size) {
+        int[][] data = new int[1][1];
+        final int[][] bayer = bayer(size, data);
+        for (int j = 0; j < size; j++) {
+            for (int i =0; i < size; i++) {
+                System.out.print(bayer[i][j]+"\t");
+            }
+            System.out.println();
+        }
+        return bayer;
+    }
+
+    private int[][] bayer(int rank, int[][] data) {
+        if (rank == 0) return data;
+        int n = data.length;
+        int[][] mat = new int[n*2][n*2];
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < n; i++) {
+                int x = data[i][j];
+                mat[i*2][j*2] = x;
+                mat[i*2][j*2+1] =  x + n * n * 3;
+                mat[i*2+1][j*2] =  x + n * n * 2;
+                mat[i*2+1][j*2+1] =  x + n * n;
+            }
+        }
+        return bayer(rank -1, mat);
+//        for i, j in rangexy (n, n):
+//        x = mat[j][i]
+//        newmat[j * 2][i * 2] = x
+//        newmat[j * 2][i * 2 + 1] = x + n * n * 3
+//        newmat[j * 2 + 1][i * 2] = x + n * n * 2
+//        newmat[j * 2 + 1][i * 2 + 1] = x + n * n
+//        return makebayer(rank - 1, newmat)
+    }
+
+
     public Dithering bayer2x2() {
         int[] data = {
                 0, 2,
@@ -36,6 +72,20 @@ public class OrderedDitheringFactory {
                 63, 31, 55, 23, 61, 29, 53, 21
         };
         final OrderedThresholdTable table = new OrderedThresholdTable(8, data);
+        table.scale();
+        return new OrderedDithering(table);
+    }
+
+    /* Undocumented */
+    //https://www.researchgate.net/publication/220050726_Adaptive_cluster_dot_dithering
+    public Dithering alternativeCluster4x4() {
+        int[] data = {
+                5, 10, 4, 9,
+                1, 6, 15, 3,
+                11, 0, 14, 8,
+                7, 12, 2, 1
+        };
+        final OrderedThresholdTable table = new OrderedThresholdTable(4, data);
         table.scale();
         return new OrderedDithering(table);
     }

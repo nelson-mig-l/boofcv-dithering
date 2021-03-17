@@ -10,12 +10,18 @@ public class DitheringFactory {
         return new RandomDithering();
     }
 
-    public Dithering simple() {
-        return new SimpleDithering();
-    }
-
+    /* Undocumented */
     public Dithering smartRandom() {
         return new SmartRandomDithering();
+    }
+
+    /* Undocumented */
+    public Dithering gaussianRandom() {
+        return new GaussianRandomDithering();
+    }
+
+    public Dithering simple() {
+        return new SimpleDithering();
     }
 
     public ErrorDiffusionDitheringFactory errorDiffusion() {
