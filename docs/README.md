@@ -10,6 +10,11 @@
 ![original](bw-ref.bmp)
 ![processed](random.bmp)
 
+## Gaussian Random
+
+![original](bw-ref.bmp)
+![processed](gaussian-random.bmp)
+
 ## Simple
 
 ![original](bw-ref.bmp)

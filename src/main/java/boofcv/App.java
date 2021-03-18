@@ -1,8 +1,6 @@
 package boofcv;
 
-import boofcv.alg.dithering.Dithering;
-import boofcv.alg.dithering.DitheringFactory;
-import boofcv.alg.dithering.DitheringOperation;
+import boofcv.alg.dithering.*;
 import boofcv.io.image.ConvertBufferedImage;
 import boofcv.io.image.UtilImageIO;
 import boofcv.struct.image.GrayU8;
@@ -30,13 +28,16 @@ public class App {
         //apply(color, dithering.average(), "average-color");
 
         apply(input, dithering.random(), "random");
-        //apply(color, dithering.random(), "random-color");
+        apply(color, dithering.random(), "random-color");
+
+        apply(input, dithering.smartRandom(), "smart-random");
+        apply(color, dithering.smartRandom(), "smart-random-color");
+
+        apply(input, dithering.gaussianRandom(), "gaussian-random");
+        apply(color, dithering.gaussianRandom(), "gaussian-random-color");
 
         apply(input, dithering.simple(), "simple");
         //apply(color, dithering.simple(), "simple-color");
-
-        apply(input, dithering.smartRandom(), "smart-random");
-        //apply(color, dithering.smartRandom(), "smart-random-color");
 
         apply(input, dithering.errorDiffusion().atkinson(), "atkinson");
         //apply(color, dithering.errorDiffusion().atkinson(), "atkinson-color");
@@ -71,11 +72,24 @@ public class App {
         apply(input, dithering.ordered().bayer8x8(), "bayer-8x8");
         //apply(color, dithering.ordered().bayer8x8(), "bayer-8-color");
 
+        apply(input, dithering.ordered().bayer(4), "bayer-rank-4-16x16");
+        //apply(color, dithering.ordered().bayer8x8(), "bayer-8-color");
+
         apply(input, dithering.ordered().cluster4x4(), "cluster-4x4");
         //apply(color, dithering.ordered().cluster4x4(), "cluster-4-color");
 
         apply(input, dithering.ordered().cluster8x8(), "cluster-8x8");
         //apply(color, dithering.ordered().cluster8x8(), "cluster-8-color");
+
+        final OrderedThresholdTable customCluster4x4 = OrderedThresholdTableLoader
+                .fromFile("src/main/resources/ordered-cluster-alternative-4x4.txt");
+        apply(input, dithering.ordered().custom(customCluster4x4), "custom-cluster-4x4");
+        //apply(color, dithering.ordered().cluster4x4(), "alternative-cluster-4-color");
+
+        final OrderedThresholdTable customCluster8x8 = OrderedThresholdTableLoader
+                .fromFile("src/main/resources/ordered-cluster-impa-br-8x8.txt");
+        apply(input, dithering.ordered().custom(customCluster8x8), "custom-cluster-8x8");
+
     }
 
     private static void apply(final Planar<GrayU8> input, final Dithering dithering, final String name) {

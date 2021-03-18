@@ -1,0 +1,5 @@
+#https://www.researchgate.net/publication/220050726_Adaptive_cluster_dot_dithering
+ 5, 10,  4,  9
+ 1,  6, 15,  3
+11,  0, 14,  8
+ 7, 12,  2,  1

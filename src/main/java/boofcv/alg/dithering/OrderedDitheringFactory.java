@@ -1,91 +1,29 @@
 package boofcv.alg.dithering;
 
+import java.util.Arrays;
+
 public class OrderedDitheringFactory {
 
-    public int[][] bayer(int size) {
-        int[][] data = new int[1][1];
-        final int[][] bayer = bayer(size, data);
-        for (int j = 0; j < size; j++) {
-            for (int i =0; i < size; i++) {
-                System.out.print(bayer[i][j]+"\t");
-            }
-            System.out.println();
-        }
-        return bayer;
-    }
-
-    private int[][] bayer(int rank, int[][] data) {
-        if (rank == 0) return data;
-        int n = data.length;
-        int[][] mat = new int[n*2][n*2];
-        for (int j = 0; j < n; j++) {
-            for (int i = 0; i < n; i++) {
-                int x = data[i][j];
-                mat[i*2][j*2] = x;
-                mat[i*2][j*2+1] =  x + n * n * 3;
-                mat[i*2+1][j*2] =  x + n * n * 2;
-                mat[i*2+1][j*2+1] =  x + n * n;
-            }
-        }
-        return bayer(rank -1, mat);
-//        for i, j in rangexy (n, n):
-//        x = mat[j][i]
-//        newmat[j * 2][i * 2] = x
-//        newmat[j * 2][i * 2 + 1] = x + n * n * 3
-//        newmat[j * 2 + 1][i * 2] = x + n * n * 2
-//        newmat[j * 2 + 1][i * 2 + 1] = x + n * n
-//        return makebayer(rank - 1, newmat)
-    }
-
-
     public Dithering bayer2x2() {
-        int[] data = {
-                0, 2,
-                3, 1
-        };
-        final OrderedThresholdTable table = new OrderedThresholdTable(2, data);
+        final OrderedThresholdTable table = bayerInternal(1);
         table.scale();
         return new OrderedDithering(table);
     }
 
     public Dithering bayer4x4() {
-        int[] data = {
-                0, 8, 2, 10,
-                12, 4, 14, 6,
-                3, 11, 1, 9,
-                15, 7, 13, 5
-        };
-        final OrderedThresholdTable table = new OrderedThresholdTable(4, data);
+        final OrderedThresholdTable table = bayerInternal(2);
         table.scale();
         return new OrderedDithering(table);
     }
 
     public Dithering bayer8x8() {
-        int[] data = {
-                0, 32, 8, 40, 2, 34, 10, 42,
-                48, 16, 56, 24, 50, 18, 58, 26,
-                12, 44, 4, 36, 14, 46, 6, 38,
-                60, 28, 52, 20, 62, 30, 54, 22,
-                3, 35, 11, 43, 1, 33, 9, 41,
-                51, 19, 59, 27, 49, 17, 57, 25,
-                15, 47, 7, 39, 13, 45, 5, 37,
-                63, 31, 55, 23, 61, 29, 53, 21
-        };
-        final OrderedThresholdTable table = new OrderedThresholdTable(8, data);
+        final OrderedThresholdTable table = bayerInternal(3);
         table.scale();
         return new OrderedDithering(table);
     }
 
-    /* Undocumented */
-    //https://www.researchgate.net/publication/220050726_Adaptive_cluster_dot_dithering
-    public Dithering alternativeCluster4x4() {
-        int[] data = {
-                5, 10, 4, 9,
-                1, 6, 15, 3,
-                11, 0, 14, 8,
-                7, 12, 2, 1
-        };
-        final OrderedThresholdTable table = new OrderedThresholdTable(4, data);
+    public Dithering bayer(int rank) {
+        final OrderedThresholdTable table = bayerInternal(rank);
         table.scale();
         return new OrderedDithering(table);
     }
@@ -117,6 +55,42 @@ public class OrderedDitheringFactory {
         table.scale();
         return new OrderedDithering(table);
     }
+
+    /**
+     * Will create a bayer matrix of size 2^rank * 2^rank.
+     * Advised to maintain rank bellow 10. (Why would you need matrix of size 1024*1024 ?)
+     * @param rank
+     * @return
+     */
+    OrderedThresholdTable bayerInternal(int rank) {
+        int[][] mat = bayer(rank, new int[1][1]);
+        int[] data = Arrays.stream(mat)
+                .flatMapToInt(Arrays::stream)
+                .toArray();
+        return new OrderedThresholdTable(mat.length, data);
+    }
+
+    // This shity stuff from libcaca
+    private int[][] bayer(int rank, int[][] mat) {
+        if (rank == 0) return mat;
+        int n = mat.length;
+        int[][] data = new int[n * 2][n * 2];
+        for (int j = 0; j < n; j++) {
+            for (int i = 0; i < n; i++) {
+                int x = mat[i][j];
+                data[i * 2][j * 2] = x;
+                data[i * 2 + 1][j * 2] = x + n * n * 3;
+                data[i * 2][j * 2 + 1] = x + n * n * 2;
+                data[i * 2 + 1][j * 2 + 1] = x + n * n;
+            }
+        }
+        return bayer(rank - 1, data);
+    }
+
+    // Cluster 6x6
+    // https://archive.is/71e9G
+
+
 
 //    public Dithering cluster5x3() {
 //        int[] data = {

@@ -1,0 +1,9 @@
+# https://tannerhelland.com/2012/12/28/dithering-eleven-algorithms-source-code.html
+# simplification of the original Floyd-Steinberg
+# size
+2, 2
+# offset
+0, 0
+# data
+0, 3
+3, 2

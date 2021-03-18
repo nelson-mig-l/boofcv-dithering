@@ -20,7 +20,9 @@ public class OrderedThresholdTableLoader {
                     .mapToInt(i -> i)
                     .toArray();
             final int size = (int) Math.sqrt(data.length);
-            return new OrderedThresholdTable(size, data);
+            final OrderedThresholdTable table = new OrderedThresholdTable(size, data);
+            table.scale();
+            return table;
         } catch (IOException exception) {
             throw new RuntimeException(exception);
         }

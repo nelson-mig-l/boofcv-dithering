@@ -1,5 +1,9 @@
 package boofcv.alg.dithering;
 
+/**
+ * Only supports square matrix.
+ * Good for bayer matrix. But cluster matrix dont have to be square.
+ */
 public class OrderedThresholdTable {
 
     private final int size;
