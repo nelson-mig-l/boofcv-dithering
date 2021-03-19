@@ -24,6 +24,11 @@ public class AverageDithering implements Dithering {
     }
 
     @Override
+    public void nextLine(int y) {
+        // do nothing
+    }
+
+    @Override
     public int doPixel(int x, int y) {
         final int source = input.get(x, y);
         if (source > thresholdValue) {

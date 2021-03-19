@@ -12,99 +12,88 @@ import java.awt.image.BufferedImage;
 public class App {
 
     private static final String NAME = "lena";
-    private static final String EXAMPLE = "docs/" + NAME + ".bmp";
+    private static final String EXAMPLE = "docs/" + NAME + ".png";
 
     public static void main(String[] args) {
-        final BufferedImage image = UtilImageIO.loadImage(EXAMPLE);
-        final GrayU8 input = new GrayU8(image.getWidth(), image.getHeight());
-        ConvertBufferedImage.convertFromSingle(image, input, GrayU8.class);
-        UtilImageIO.saveImage(input, output("bw-ref"));
+        new App().run();
+    }
 
-        final Planar<GrayU8> color = ConvertBufferedImage.convertFrom(image, true, ImageType.pl(3, GrayU8.class));
+    private final GrayU8 gray;
+    private final Planar<GrayU8> color;
+    private boolean generateColor = true;
 
+    public App() {
+        BufferedImage image = UtilImageIO.loadImage(EXAMPLE);
+        gray = new GrayU8(image.getWidth(), image.getHeight());
+        ConvertBufferedImage.convertFromSingle(image, gray, GrayU8.class);
+        color = ConvertBufferedImage
+                .convertFrom(image, true, ImageType.pl(3, GrayU8.class));
+        UtilImageIO.saveImage(gray, output("gray"));
+        UtilImageIO.saveImage(color, output("color"));
+    }
+
+    public void run() {
         final DitheringFactory dithering = new DitheringFactory();
 
-        apply(input, dithering.average(), "average");
-        //apply(color, dithering.average(), "average-color");
+        apply(dithering.average(), "average");
 
-        apply(input, dithering.random(), "random");
-        apply(color, dithering.random(), "random-color");
+        apply(dithering.random(), "random");
 
-        apply(input, dithering.smartRandom(), "smart-random");
-        apply(color, dithering.smartRandom(), "smart-random-color");
+        apply(dithering.smartRandom(), "smart-random"); //
 
-        apply(input, dithering.gaussianRandom(), "gaussian-random");
-        apply(color, dithering.gaussianRandom(), "gaussian-random-color");
+        apply(dithering.gaussianRandom(), "gaussian-random");
 
-        apply(input, dithering.simple(), "simple");
-        //apply(color, dithering.simple(), "simple-color");
+        apply(dithering.simple(), "simple");
 
-        apply(input, dithering.errorDiffusion().atkinson(), "atkinson");
-        //apply(color, dithering.errorDiffusion().atkinson(), "atkinson-color");
+        apply(dithering.errorDiffusion().floydSteinberg(), "floyd-steinberg");
 
-        apply(input, dithering.errorDiffusion().burkes(), "burkes");
-        //apply(color, dithering.errorDiffusion().burkes(), "burkes-color");
+        apply(dithering.errorDiffusion().jarvisJudiceAndNinke(), "jarvis-judice-and-ninke");
 
-        apply(input, dithering.errorDiffusion().floydSteinberg(), "floyd-steinberg");
-        //apply(color, dithering.errorDiffusion().floydSteinberg(), "floyd-steinberg-color");
+        apply(dithering.errorDiffusion().stucki(), "stucki");
 
-        apply(input, dithering.errorDiffusion().jarvisJudiceAndNinke(), "jarvis-judice-and-ninke");
-        //apply(color, dithering.errorDiffusion().jarvisJudiceAndNinke(), "jarvis-judice-and-ninke-color");
+        apply(dithering.errorDiffusion().atkinson(), "atkinson");
 
-        apply(input, dithering.errorDiffusion().sierra(), "sierra");
-        //apply(color, dithering.errorDiffusion().sierra(), "sierra-color");
+        apply(dithering.errorDiffusion().burkes(), "burkes");
 
-        apply(input, dithering.errorDiffusion().sierraLite(), "sierra-lite");
-        //apply(color, dithering.errorDiffusion().sierraLite(), "sierra-lite-color");
+        apply(dithering.errorDiffusion().sierra(), "sierra");
 
-        apply(input, dithering.errorDiffusion().stucki(), "stucki");
-        //apply(color, dithering.errorDiffusion().stucki(), "stucki-color");
+        apply(dithering.errorDiffusion().twoRowSierra(), "two-row-sierra");
 
-        apply(input, dithering.errorDiffusion().twoRowSierra(), "two-row-sierra");
-        //apply(color, dithering.errorDiffusion().twoRowSierra(), "two-row-sierra-color");
+        apply(dithering.errorDiffusion().sierraLite(), "sierra-lite");
 
-        apply(input, dithering.ordered().bayer2x2(), "bayer-2x2");
-        //apply(color, dithering.ordered().bayer2x2(), "bayer-2-color");
+        apply(dithering.ordered().bayer2x2(), "bayer-2x2");
 
-        apply(input, dithering.ordered().bayer4x4(), "bayer-4x4");
-        //apply(color, dithering.ordered().bayer4x4(), "bayer-4-color");
+        apply(dithering.ordered().bayer4x4(), "bayer-4x4");
 
-        apply(input, dithering.ordered().bayer8x8(), "bayer-8x8");
-        //apply(color, dithering.ordered().bayer8x8(), "bayer-8-color");
+        apply(dithering.ordered().bayer8x8(), "bayer-8x8");
 
-        apply(input, dithering.ordered().bayer(4), "bayer-rank-4-16x16");
-        //apply(color, dithering.ordered().bayer8x8(), "bayer-8-color");
+        apply(dithering.ordered().bayer(4), "bayer-rank-4-16x16"); //
 
-        apply(input, dithering.ordered().cluster4x4(), "cluster-4x4");
-        //apply(color, dithering.ordered().cluster4x4(), "cluster-4-color");
+        apply(dithering.ordered().cluster4x4(), "cluster-4x4");
 
-        apply(input, dithering.ordered().cluster8x8(), "cluster-8x8");
-        //apply(color, dithering.ordered().cluster8x8(), "cluster-8-color");
+        apply(dithering.ordered().cluster8x8(), "cluster-8x8");
 
         final OrderedThresholdTable customCluster4x4 = OrderedThresholdTableLoader
                 .fromFile("src/main/resources/ordered-cluster-alternative-4x4.txt");
-        apply(input, dithering.ordered().custom(customCluster4x4), "custom-cluster-4x4");
-        //apply(color, dithering.ordered().cluster4x4(), "alternative-cluster-4-color");
+        apply(dithering.ordered().custom(customCluster4x4), "custom-cluster-4x4"); //
 
         final OrderedThresholdTable customCluster8x8 = OrderedThresholdTableLoader
                 .fromFile("src/main/resources/ordered-cluster-impa-br-8x8.txt");
-        apply(input, dithering.ordered().custom(customCluster8x8), "custom-cluster-8x8");
+        apply(dithering.ordered().custom(customCluster8x8), "custom-cluster-8x8"); //
 
     }
 
-    private static void apply(final Planar<GrayU8> input, final Dithering dithering, final String name) {
+    private void apply(final Dithering dithering, final String name) {
         final DitheringOperation operation = new DitheringOperation(dithering);
-        final Planar<GrayU8> output = operation.apply(input);
+        final GrayU8 output = operation.apply(gray);
         UtilImageIO.saveImage(output, output(name));
+        if (generateColor) {
+            final Planar<GrayU8> outputColor = operation.apply(color);
+            UtilImageIO.saveImage(outputColor, output(name + "-color"));
+        }
     }
 
-    private static void apply(final GrayU8 input, final Dithering dithering, final String name) {
-        final DitheringOperation operation = new DitheringOperation(dithering);
-        final GrayU8 output = operation.apply(input);
-        UtilImageIO.saveImage(output, output(name));
-    }
-
-    private static String output(final String name) {
+    private String output(final String name) {
         return EXAMPLE.replace(NAME, name);
     }
 }

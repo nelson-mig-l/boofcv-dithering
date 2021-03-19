@@ -21,6 +21,11 @@ public class ErrorDiffusionDithering implements Dithering {
     }
 
     @Override
+    public void nextLine(int y) {
+        // do nothing
+    }
+
+    @Override
     public int doPixel(int x, int y) {
         int source = input.get(x, y) + error.get(x, y);
         if (source >= 127) {

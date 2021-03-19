@@ -17,6 +17,11 @@ public class OrderedDithering implements Dithering {
     }
 
     @Override
+    public void nextLine(int y) {
+        // do nothing
+    }
+
+    @Override
     public int doPixel(int x, int y) {
         if (input.get(x, y) > table.getValue(x, y)) {
             return 255;

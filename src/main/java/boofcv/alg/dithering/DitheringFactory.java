@@ -15,7 +15,6 @@ public class DitheringFactory {
         return new SmartRandomDithering();
     }
 
-    /* Undocumented */
     public Dithering gaussianRandom() {
         return new GaussianRandomDithering();
     }

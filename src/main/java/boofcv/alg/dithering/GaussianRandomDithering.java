@@ -20,6 +20,11 @@ public class GaussianRandomDithering implements Dithering {
     }
 
     @Override
+    public void nextLine(int y) {
+        // do nothing
+    }
+
+    @Override
     public int doPixel(int x, int y) {
         int thresholdValue = nextGaussianThreshold();
         int source = input.get(x, y);

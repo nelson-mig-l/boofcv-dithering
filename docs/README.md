@@ -2,89 +2,93 @@
 
 ## Average
 
-![original](bw-ref.bmp)
-![processed](average.bmp)
+![original](gray.png)
+![processed](average.png)
 
 ## Random
 
-![original](bw-ref.bmp)
-![processed](random.bmp)
+![original](gray.png)
+![processed](random.png)
 
 ## Gaussian Random
 
-![original](bw-ref.bmp)
-![processed](gaussian-random.bmp)
+![original](gray.png)
+![processed](gaussian-random.png)
 
 ## Simple
 
-![original](bw-ref.bmp)
-![processed](simple.bmp)
+![original](gray.png)
+![processed](simple.png)
 
 ## Error Diffusion
 
 ### Floyd-Steinberg
 
-![original](bw-ref.bmp)
-![processed](floyd-steinberg.bmp)
+![original](gray.png)
+![processed](floyd-steinberg.png)
 
-### Jarvis, Judice, and Ninke Dithering
+### Jarvis, Judice, and Ninke
 
-![original](bw-ref.bmp)
-![processed](jarvis-judice-and-ninke.bmp)
+![original](gray.png)
+![processed](jarvis-judice-and-ninke.png)
 
-### Stucki Dithering
+### Stucki
 
-![original](bw-ref.bmp)
-![processed](stucki.bmp)
+![original](gray.png)
+![processed](stucki.png)
 
-### Atkinson Dithering
+### Atkinson
 
-![original](bw-ref.bmp)
-![processed](atkinson.bmp)
+![original](gray.png)
+![processed](atkinson.png)
 
-### Burkes Dithering
+### Burkes
 
-![original](bw-ref.bmp)
-![processed](burkes.bmp)
+![original](gray.png)
+![processed](burkes.png)
 
-### Sierra Dithering
+### Sierra
 
-![original](bw-ref.bmp)
-![processed](sierra.bmp)
+![original](gray.png)
+![processed](sierra.png)
 
-### Two-Row Sierra
+### Two-Row
 
-![original](bw-ref.bmp)
-![processed](two-row-sierra.bmp)
+![original](gray.png)
+![processed](two-row-sierra.png)
 
 ### Sierra Lite
 
-![original](bw-ref.bmp)
-![processed](sierra-lite.bmp)
+![original](gray.png)
+![processed](sierra-lite.png)
 
 ## Ordered
 
 ### Bayer 2x2
 
-![original](bw-ref.bmp)
-![processed](bayer-2x2.bmp)
+![original](gray.png)
+![processed](bayer-2x2.png)
 
 ### Bayer 4x4
 
-![original](bw-ref.bmp)
-![processed](bayer-4x4.bmp)
+![original](gray.png)
+![processed](bayer-4x4.png)
 
 ### Bayer 8x8
 
-![original](bw-ref.bmp)
-![processed](bayer-8x8.bmp)
+![original](gray.png)
+![processed](bayer-8x8.png)
 
 ### Cluster 4x4
 
-![original](bw-ref.bmp)
-![processed](cluster-4x4.bmp)
+![original](gray.png)
+![processed](cluster-4x4.png)
 
 ### Cluster 8x8
 
-![original](bw-ref.bmp)
-![processed](cluster-8x8.bmp)
+![original](gray.png)
+![processed](cluster-8x8.png)
+
+## Color Examples
+
+[Color Examples in RGB](RGB.md)

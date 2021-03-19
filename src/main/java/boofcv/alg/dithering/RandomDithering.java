@@ -24,6 +24,11 @@ public class RandomDithering implements Dithering {
     }
 
     @Override
+    public void nextLine(int y) {
+        // do nothing
+    }
+
+    @Override
     public int doPixel(int x, int y) {
         int thresholdValue = random.nextInt(255);
         int source = input.get(x, y);
