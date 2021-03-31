@@ -6,7 +6,7 @@
 
     <groupId>org.example</groupId>
     <artifactId>boofcv-dithering</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
@@ -36,5 +36,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub nelson-mig-l Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/nelson-mig-l/boofcv-cmyk</url>
+        </repository>
+    </distributionManagement>
 
 </project>

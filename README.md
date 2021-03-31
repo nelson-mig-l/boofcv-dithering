@@ -33,6 +33,4 @@ Other sources include:
 * https://bisqwit.iki.fi/story/howto/dither/jy/
 * https://www.programmersought.com/article/9915545798/
 * https://www.hindawi.com/journals/am/2016/4901609/
-* https://github.com/hbldh/hitherdither
-
 * ...

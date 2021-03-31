@@ -9,20 +9,20 @@ import boofcv.struct.image.Planar;
 
 import java.awt.image.BufferedImage;
 
-public class App {
+public class TestApp {
 
     private static final String NAME = "lena";
     private static final String EXAMPLE = "docs/" + NAME + ".png";
-
-    public static void main(String[] args) {
-        new App().run();
-    }
 
     private final GrayU8 gray;
     private final Planar<GrayU8> color;
     private boolean generateColor = true;
 
-    public App() {
+    public static void main(String[] args) {
+        new TestApp().run();
+    }
+
+    public TestApp() {
         BufferedImage image = UtilImageIO.loadImage(EXAMPLE);
         gray = new GrayU8(image.getWidth(), image.getHeight());
         ConvertBufferedImage.convertFromSingle(image, gray, GrayU8.class);
