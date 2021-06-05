@@ -1,7 +1,6 @@
 # boofcv-dithering
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/aed9c383f7c544cfb77ef47263459411)](https://www.codacy.com/gh/nelson-mig-l/boofcv-dithering/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=nelson-mig-l/boofcv-dithering&amp;utm_campaign=Badge_Grade)
-:construction: Work in progress :construction:
 
 [List of implemented algorithms](docs/README.md)
 
@@ -14,7 +13,7 @@ Dithering dithering = new DitheringFactory().errorDiffusion().floydSteinberg();
 DitheringOperation operation = new DitheringOperation(dithering);
 GrayU8 output = operation.apply(input);
 ```
-Currently `DitheringOperation` only supports `GrayU8` and `Planar<GrayU8>`.
+**`DitheringOperation` only supports `GrayU8` and `Planar<GrayU8>`.**
 
 ## Sources
 

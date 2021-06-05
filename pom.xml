@@ -41,7 +41,7 @@
         <repository>
             <id>github</id>
             <name>GitHub nelson-mig-l Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/nelson-mig-l/boofcv-cmyk</url>
+            <url>https://maven.pkg.github.com/nelson-mig-l/boofcv-dithering</url>
         </repository>
     </distributionManagement>
 
